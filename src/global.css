@@ -1,0 +1,12 @@
+:root {
+  --primary-font-family: system-ui;
+  --text-color: rgb(204, 204, 204);
+  --dark-background: rgb(31, 31, 31);
+  --darker-background: rgb(24, 24, 24);
+  --hover-color: rgb(70, 70, 70);
+  --accent-color: #8895f2;
+
+  background-color: var(--darker-background);
+  font-family: var(--primary-font-family);
+  color-scheme: dark;
+}
