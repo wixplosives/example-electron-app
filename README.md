@@ -24,6 +24,16 @@ Filters file list in `forge.config.cjs`. Currently filters out `/node_modules`, 
 
 `npm run typecheck` - checks sources using typescript.
 
+## Prerequisites for `build:full`
+
+On a freshly installed Fedora 39, with all updates:
+
+To build `.deb`:
+`sudo dnf install dpkg fakeroot`
+
+To build `.rpm`:
+`sudo dnf install rpm-build`
+
 ## License
 
 MIT
