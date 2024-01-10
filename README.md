@@ -18,7 +18,7 @@ Filters file list in `forge.config.cjs`. Currently filters out `/node_modules`, 
 
 `npm run package` - builds `dist` into `out/example-electron-app-<arch>` containing a self contained electron application. Takes less than 2s.
 
-`npm run make` - same as `npm run package`, but also builds `deb`, `rpm`, `flatpak`, and `zip` packages into `out/make/<format>` folders.
+`npm run make` - same as `npm run package`, but also builds `deb`, `rpm`, and `zip` packages into `out/make/<format>` folders.
 
 `npm run build:full` - runs `npm run build` and `npm run make`.
 

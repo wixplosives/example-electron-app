@@ -18,31 +18,6 @@ module.exports = {
     { name: "@electron-forge/maker-zip" },
     { name: "@electron-forge/maker-deb", platforms: ["linux"] },
     { name: "@electron-forge/maker-rpm", platforms: ["linux"] },
-    {
-      name: "@electron-forge/maker-flatpak",
-      platforms: ["linux"],
-      config: {
-        options: {
-          id: "org.flathub.example-electron-app",
-          runtimeVersion: "23.08",
-          base: "org.electronjs.Electron2.BaseApp",
-          baseVersion: "23.08",
-          modules: [
-            {
-              name: "zypak",
-              sources: [
-                {
-                  type: "git",
-                  url: "https://github.com/refi64/zypak",
-                  tag: "v2022.04",
-                },
-              ],
-            },
-          ],
-          categories: ["Development"],
-        },
-      },
-    },
   ],
 };
 
