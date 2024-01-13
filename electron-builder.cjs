@@ -10,6 +10,7 @@ module.exports = {
   },
   linux: {
     target: ["AppImage", "deb", "rpm", "snap", "zip", "tar.xz"],
+    category: "Utility",
   },
   win: {
     target: ["nsis", "zip"],
