@@ -12,7 +12,8 @@
     "package": "electron-builder build --dir",
     "make": "electron-builder build",
     "test": "npm run typecheck && npm run build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prettify": "prettier --write ."
   },
   "devDependencies": {
     "@types/node": "^20.11.20",
@@ -21,6 +22,7 @@
     "electron": "^29.0.1",
     "electron-builder": "^24.12.0",
     "esbuild": "^0.20.1",
+    "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "~5.3.3"

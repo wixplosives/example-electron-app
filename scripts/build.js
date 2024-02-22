@@ -66,7 +66,7 @@ const bundles = [nodeEsmBundles, browserEsmBundle, browserCjsPreloadBundle];
 
 if (isWatch) {
   const buildContexts = await Promise.all(
-    bundles.map((bundle) => context(bundle))
+    bundles.map((bundle) => context(bundle)),
   );
   await Promise.all(buildContexts.map((context) => context.watch()));
 } else {
