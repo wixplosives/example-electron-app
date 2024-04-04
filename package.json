@@ -18,8 +18,8 @@
   "devDependencies": {
     "@types/node": "20",
     "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.23",
-    "electron": "^29.1.6",
+    "@types/react-dom": "^18.2.24",
+    "electron": "^29.2.0",
     "electron-builder": "^24.13.3",
     "esbuild": "^0.20.2",
     "prettier": "^3.2.5",
