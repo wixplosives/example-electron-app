@@ -17,6 +17,11 @@ async function createWindow() {
   await win.show();
 }
 
+if (process.platform === "linux" && process.env.NODE_ENV === "development") {
+  // to not see: "ERROR:gl_surface_presentation_helper.cc(260)] GetVSyncParametersIfAvailable() failed for <x> times"
+  app.disableHardwareAcceleration();
+}
+
 app.whenReady().then(async () => {
   await createWindow();
 
