@@ -29,7 +29,7 @@ const commonBuildOptions = {
   jsx: "automatic",
   jsxDev: isWatch,
   define: {
-    // avoid "Download the React DevTools" message
+    // avoid "Download the React DevTools" message, we're in electron and do not intend to use the browser extension
     __REACT_DEVTOOLS_GLOBAL_HOOK__: `{ "isDisabled": true }`,
   },
 };
