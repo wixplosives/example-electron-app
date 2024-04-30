@@ -10,6 +10,8 @@ async function createWindow() {
     webPreferences: {
       preload: fileURLToPath(new URL("preload.cjs", import.meta.url)),
     },
+    width: 1024,
+    height: 768,
   });
   await win.loadFile(fileURLToPath(new URL("index.html", import.meta.url)));
   await win.show();
