@@ -17,3 +17,8 @@ declare module "*.jpg" {
   const assetURL: string;
   export default assetURL;
 }
+
+declare module "*.module.css" {
+  const classes: Record<string, string>;
+  export default classes;
+}
