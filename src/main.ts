@@ -14,7 +14,7 @@ async function createWindow() {
     height: 768,
   });
   await win.loadFile(fileURLToPath(new URL("index.html", import.meta.url)));
-  await win.show();
+  win.show();
 }
 
 if (process.platform === "linux" && process.env.NODE_ENV === "development") {
