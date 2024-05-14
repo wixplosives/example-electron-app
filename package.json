@@ -19,7 +19,7 @@
     "@types/node": "20",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
-    "electron": "^30.0.3",
+    "electron": "^30.0.4",
     "electron-builder": "^24.13.3",
     "esbuild": "^0.21.2",
     "prettier": "^3.2.5",
