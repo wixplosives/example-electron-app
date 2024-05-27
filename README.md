@@ -14,11 +14,11 @@ Showcases creation of a direct communication channel between the renderer and a 
 
 `npm start` - runs `dist` using electron. If `dist` was built in development mode, `main` and `worker` are debuggable using VSCode's JavaScript Debug Terminal.
 
-`npm run package` - builds `dist` into `out/<arch>-unpacked` containing a self contained electron application.
+`npm run build:unpacked` - builds `dist` into `out/<arch>-unpacked` containing a self contained electron application.
 
-`npm run make` - same as `npm run package`, but also builds `deb`, `rpm`, `snap`, and `zip` packages into `out`.
+`npm run build:packed` - same as `npm run unpacked`, but also builds `deb`, `rpm`, `snap`, and `zip` packages into `out`.
 
-`npm run build:full` - runs `npm run build` and `npm run make`.
+`npm run build:full` - runs `npm run build` and `npm run build:packed`.
 
 `npm run typecheck` - checks sources using typescript.
 
