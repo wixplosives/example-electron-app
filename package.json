@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build:watch": "npm run build -- -w",
-    "build:full": "npm run build && build:packed",
+    "build:full": "npm run build && npm run build:packed",
     "start": "electron .",
     "build:unpacked": "electron-builder build --dir",
     "build:packed": "electron-builder build",
