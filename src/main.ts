@@ -2,7 +2,41 @@ import { BrowserWindow, MessageEvent, app, ipcMain } from "electron/main";
 import { fileURLToPath } from "node:url";
 import { Worker } from "node:worker_threads";
 
-const worker = new Worker(new URL("worker.js", import.meta.url));
+if (process.platform === "linux" && process.env.NODE_ENV === "development") {
+  // to not see: "ERROR:gl_surface_presentation_helper.cc(260)] GetVSyncParametersIfAvailable() failed for <x> times"
+  app.disableHardwareAcceleration();
+}
+
+if (app.requestSingleInstanceLock()) {
+  const worker = new Worker(new URL("worker.js", import.meta.url));
+
+  app.whenReady().then(async () => {
+    await createWindow();
+
+    app.on("activate", () => {
+      if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+      }
+    });
+
+    app.on("second-instance", () => {
+      createWindow();
+    });
+  });
+
+  app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
+      app.quit();
+    }
+  });
+
+  ipcMain.on("port", ({ ports: [port] }) => {
+    relayPortToWorker(port, worker);
+    port.start();
+  });
+} else {
+  app.quit();
+}
 
 async function createWindow() {
   const win = new BrowserWindow({
@@ -16,33 +50,6 @@ async function createWindow() {
   await win.loadFile(fileURLToPath(new URL("index.html", import.meta.url)));
   win.show();
 }
-
-if (process.platform === "linux" && process.env.NODE_ENV === "development") {
-  // to not see: "ERROR:gl_surface_presentation_helper.cc(260)] GetVSyncParametersIfAvailable() failed for <x> times"
-  app.disableHardwareAcceleration();
-}
-
-app.whenReady().then(async () => {
-  await createWindow();
-
-  app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    }
-  });
-});
-
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
-});
-
-ipcMain.on("port", (event) => {
-  const [port] = event.ports;
-  relayPortToWorker(port, worker);
-  port.start();
-});
 
 function relayPortToWorker(port: Electron.MessagePortMain, worker: Worker) {
   const portToWorker = (event: MessageEvent) => worker.postMessage(event.data);
