@@ -48,15 +48,17 @@ function initializeApp() {
 
 async function createWindow() {
   const win = new BrowserWindow({
-    show: false,
     webPreferences: {
       preload: fileURLToPath(new URL("preload.cjs", import.meta.url)),
     },
-    width: 1024,
-    height: 768,
+    // hide the window until the content is loaded (to not see a white background flash)
+    // `show: false` causes win.maximize() to not work on Linux
+    width: 0,
+    height: 0,
   });
   await win.loadFile(fileURLToPath(new URL("index.html", import.meta.url)));
-  win.show();
+  win.setBounds({ width: 1024, height: 768 });
+  win.center();
 }
 
 function focusOnFirstWindow() {
