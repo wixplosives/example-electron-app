@@ -2,26 +2,36 @@ import { BrowserWindow, MessageEvent, app, ipcMain } from "electron/main";
 import { fileURLToPath } from "node:url";
 import { Worker } from "node:worker_threads";
 
+const multipleWindowsAllowed = true;
+
 if (process.platform === "linux" && process.env.NODE_ENV === "development") {
   // to not see: "ERROR:gl_surface_presentation_helper.cc(260)] GetVSyncParametersIfAvailable() failed for <x> times"
   app.disableHardwareAcceleration();
 }
 
 if (app.requestSingleInstanceLock()) {
+  initializeApp();
+} else {
+  app.quit();
+}
+
+function initializeApp() {
   const worker = new Worker(new URL("worker.js", import.meta.url));
 
-  app.whenReady().then(async () => {
-    await createWindow();
+  void app.whenReady().then(createWindow);
 
-    app.on("activate", () => {
-      if (BrowserWindow.getAllWindows().length === 0) {
-        createWindow();
-      }
-    });
-
-    app.on("second-instance", () => {
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
-    });
+    }
+  });
+
+  app.on("second-instance", () => {
+    if (multipleWindowsAllowed || BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    } else {
+      focusOnFirstWindow();
+    }
   });
 
   app.on("window-all-closed", () => {
@@ -34,8 +44,6 @@ if (app.requestSingleInstanceLock()) {
     relayPortToWorker(port, worker);
     port.start();
   });
-} else {
-  app.quit();
 }
 
 async function createWindow() {
@@ -49,6 +57,16 @@ async function createWindow() {
   });
   await win.loadFile(fileURLToPath(new URL("index.html", import.meta.url)));
   win.show();
+}
+
+function focusOnFirstWindow() {
+  const [firstWindow] = BrowserWindow.getAllWindows();
+  if (firstWindow) {
+    if (firstWindow.isMinimized()) {
+      firstWindow.restore();
+    }
+    firstWindow.focus();
+  }
 }
 
 function relayPortToWorker(port: Electron.MessagePortMain, worker: Worker) {
