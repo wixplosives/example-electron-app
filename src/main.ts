@@ -18,7 +18,13 @@ if (app.requestSingleInstanceLock()) {
 function initializeApp() {
   const worker = new Worker(new URL("worker.js", import.meta.url));
 
-  void app.whenReady().then(createWindow);
+  app
+    .whenReady()
+    .then(createWindow)
+    .catch((e) => {
+      console.error(e);
+      app.quit();
+    });
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
