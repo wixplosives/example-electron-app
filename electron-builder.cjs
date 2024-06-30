@@ -19,4 +19,5 @@ module.exports = {
     oneClick: false,
     allowToChangeInstallationDirectory: true,
   },
+  electronLanguages: ["en-US"],
 };
