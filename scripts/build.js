@@ -36,10 +36,10 @@ const commonBuildOptions = {
 
 /** @type {import('esbuild').BuildOptions} */
 const nodeEsmBundles = {
+  platform: "node",
   ...commonBuildOptions,
   format: "esm",
   entryPoints: ["src/main.ts", "src/worker.ts"],
-  packages: "external",
 };
 
 /** @type {import('esbuild').BuildOptions} */
