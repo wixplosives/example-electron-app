@@ -23,7 +23,7 @@ function initializeApp() {
     .then(createWindow)
     .catch((e) => {
       console.error(e);
-      app.quit();
+      app.exit(1);
     });
 
   app.on("activate", () => {
