@@ -9,10 +9,12 @@ window.addEventListener("message", (event) => {
   if (event.data === "port") {
     const [port] = event.ports;
 
-    port.addEventListener("message", (event) => {
-      console.log("renderer got message", event.data);
-    });
-    port.postMessage("hello from renderer");
-    port.start();
+    if (port) {
+      port.addEventListener("message", (event) => {
+        console.log("renderer got message", event.data);
+      });
+      port.postMessage("hello from renderer");
+      port.start();
+    }
   }
 });

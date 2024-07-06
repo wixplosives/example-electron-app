@@ -47,8 +47,10 @@ function initializeApp() {
   });
 
   ipcMain.on("port", ({ ports: [port] }) => {
-    relayPortToWorker(port, worker);
-    port.start();
+    if (port) {
+      relayPortToWorker(port, worker);
+      port.start();
+    }
   });
 }
 
