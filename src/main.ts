@@ -15,9 +15,15 @@ if (app.requestSingleInstanceLock()) {
   app.quit();
 }
 
+const listeningPorts = new Set<Electron.MessagePortMain>();
 function initializeApp() {
   const worker = new Worker(new URL("worker.js", import.meta.url));
-
+  const workerToPorts = (message: unknown) => {
+    for (const port of listeningPorts) {
+      port.postMessage(message);
+    }
+  };
+  worker.on("message", workerToPorts);
   app
     .whenReady()
     .then(createWindow)
@@ -80,12 +86,11 @@ function focusOnFirstWindow() {
 }
 
 function relayPortToWorker(port: Electron.MessagePortMain, worker: Worker) {
+  listeningPorts.add(port);
   const portToWorker = (event: MessageEvent) => worker.postMessage(event.data);
   port.on("message", portToWorker);
-  const workerToPort = (message: unknown) => port.postMessage(message);
-  worker.on("message", workerToPort);
   const onPortClose = () => {
-    worker.off("message", workerToPort);
+    listeningPorts.delete(port);
     port.off("message", portToWorker);
     port.off("close", onPortClose);
   };
