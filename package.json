@@ -2,6 +2,7 @@
   "name": "example-electron-app",
   "version": "1.0.0",
   "description": "Example Electron Application",
+  "productName": "Example Electron App",
   "main": "./dist/main.js",
   "type": "module",
   "scripts": {

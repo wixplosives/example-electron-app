@@ -1,6 +1,7 @@
 import { BrowserWindow, MessageEvent, app, ipcMain } from "electron/main";
 import { fileURLToPath } from "node:url";
 import { Worker } from "node:worker_threads";
+import { setApplicationMenu } from "./app-menu";
 
 const multipleWindowsAllowed = true;
 
@@ -26,6 +27,7 @@ function initializeApp() {
   worker.on("message", workerToPorts);
   app
     .whenReady()
+    .then(setApplicationMenu)
     .then(createWindow)
     .catch((e) => {
       console.error(e);
