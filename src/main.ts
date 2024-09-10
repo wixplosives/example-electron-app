@@ -36,13 +36,13 @@ function initializeApp() {
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+      createWindow().catch(console.error);
     }
   });
 
   app.on("second-instance", () => {
     if (multipleWindowsAllowed || BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+      createWindow().catch(console.error);
     } else {
       focusOnFirstWindow();
     }
