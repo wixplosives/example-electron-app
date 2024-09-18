@@ -13,6 +13,7 @@ if (process.platform === "linux" && process.env.NODE_ENV === "development") {
 if (app.requestSingleInstanceLock()) {
   initializeApp();
 } else {
+  console.log("Opening in existing app session.");
   app.quit();
 }
 
