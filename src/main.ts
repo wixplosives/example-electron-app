@@ -49,12 +49,6 @@ function initializeApp() {
     }
   });
 
-  app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
-      app.quit();
-    }
-  });
-
   ipcMain.on("port", ({ ports: [port] }) => {
     if (port) {
       relayPortToWorker(port, worker);
