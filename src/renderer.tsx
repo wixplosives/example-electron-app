@@ -11,7 +11,7 @@ window.addEventListener("message", (event) => {
 
     if (port) {
       port.addEventListener("message", (event) => {
-        console.log("renderer got message", event.data);
+        console.log(`renderer got message: "${event.data}"`);
       });
       port.postMessage("hello from renderer");
       port.start();

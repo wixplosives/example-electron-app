@@ -41,7 +41,7 @@ const nodeEsmBundles = {
   platform: "node",
   ...commonBuildOptions,
   format: "esm",
-  entryPoints: ["src/main.ts", "src/worker.ts"],
+  entryPoints: ["src/main.ts"],
 };
 
 /** @type {import('esbuild').BuildOptions} */

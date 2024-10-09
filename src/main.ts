@@ -1,6 +1,5 @@
-import { BrowserWindow, MessageEvent, app, ipcMain } from "electron/main";
+import { BrowserWindow, app, ipcMain } from "electron/main";
 import { fileURLToPath } from "node:url";
-import { Worker } from "node:worker_threads";
 import { setApplicationMenu } from "./app-menu";
 
 const multipleWindowsAllowed = true;
@@ -17,15 +16,7 @@ if (app.requestSingleInstanceLock()) {
   app.quit();
 }
 
-const listeningPorts = new Set<Electron.MessagePortMain>();
 function initializeApp() {
-  const worker = new Worker(new URL("worker.js", import.meta.url));
-  const workerToPorts = (message: unknown) => {
-    for (const port of listeningPorts) {
-      port.postMessage(message);
-    }
-  };
-  worker.on("message", workerToPorts);
   app
     .whenReady()
     .then(setApplicationMenu)
@@ -51,8 +42,7 @@ function initializeApp() {
 
   ipcMain.on("port", ({ ports: [port] }) => {
     if (port) {
-      relayPortToWorker(port, worker);
-      port.start();
+      handlePort(port);
     }
   });
 }
@@ -78,14 +68,13 @@ function focusOnFirstWindow() {
   }
 }
 
-function relayPortToWorker(port: Electron.MessagePortMain, worker: Worker) {
-  listeningPorts.add(port);
-  const portToWorker = (event: MessageEvent) => worker.postMessage(event.data);
-  port.on("message", portToWorker);
-  const onPortClose = () => {
-    listeningPorts.delete(port);
-    port.off("message", portToWorker);
-    port.off("close", onPortClose);
-  };
-  port.on("close", onPortClose);
+function handlePort(port: Electron.MessagePortMain) {
+  port.on("message", ({ data }) => {
+    console.log(`main got message: "${data}"`);
+  });
+  port.on("close", () => {
+    port.removeAllListeners();
+  });
+  port.postMessage("hello from main");
+  port.start();
 }

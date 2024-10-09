@@ -2,9 +2,9 @@
 
 An example to showcase a typescript-based electron application.
 
-Uses native esm everywhere possible (`main`, `renderer`, and `worker`), as electron 28 now supports it. `preload` bundle is still commonjs to allow sandbox.
+Uses native esm everywhere possible (`main` and `renderer`), as electron 28 now supports it. `preload` bundle is still commonjs to allow sandbox.
 
-Showcases creation of a direct communication channel between the renderer and a worker thread started by main. Revives itself upon window reload.
+Showcases creation of a direct communication channel between the renderer and main. Revives itself upon window reload.
 
 ## Scripts
 
@@ -12,7 +12,7 @@ Showcases creation of a direct communication channel between the renderer and a 
 
 `npm run build:watch` - bundles `src` into `dist` in **development** mode and watches. Source-maps are generated.
 
-`npm start` - runs `dist` using electron. If `dist` was built in development mode, `main` and `worker` are debuggable using VSCode's JavaScript Debug Terminal.
+`npm start` - runs `dist` using electron. If `dist` was built in development mode, `main` is debuggable using VSCode's JavaScript Debug Terminal.
 
 `npm run build:unpacked` - builds `dist` into `out/<arch>-unpacked` containing a self contained electron application.
 
