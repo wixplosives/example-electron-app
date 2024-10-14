@@ -1,8 +1,10 @@
-import { BrowserWindow, app, ipcMain } from "electron/main";
+import { BrowserWindow, Menu, app, ipcMain } from "electron/main";
 import { fileURLToPath } from "node:url";
 import { setApplicationMenu } from "./app-menu";
 
 const multipleWindowsAllowed = true;
+
+Menu.setApplicationMenu(null); // https://www.electronjs.org/docs/latest/tutorial/performance
 
 if (process.platform === "linux" && process.env.NODE_ENV === "development") {
   // to not see: "ERROR:gl_surface_presentation_helper.cc(260)] GetVSyncParametersIfAvailable() failed for <x> times"
