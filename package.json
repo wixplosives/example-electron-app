@@ -21,7 +21,7 @@
     "@types/node": "20",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
-    "electron": "^32.2.0",
+    "electron": "^33.0.0",
     "electron-builder": "^25.1.8",
     "esbuild": "^0.24.0",
     "eslint": "^9.12.0",
