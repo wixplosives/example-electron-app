@@ -3,7 +3,7 @@ import { app, dialog, Menu } from "electron/main";
 
 export const setApplicationMenu = () => {
   // based on: https://github.com/electron/electron/blob/main/lib/browser/default-menu.ts
-  const githubURL = "https://github.com/wixplosives/example-electron-app";
+  const githubURL = "https://github.com/wixplosives/example-electron-application";
   const isMac = process.platform === "darwin";
   const template: Electron.MenuItemConstructorOptions[] = [
     ...(isMac ? ([{ role: "appMenu" }] as const) : []),

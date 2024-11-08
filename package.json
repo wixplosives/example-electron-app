@@ -1,5 +1,5 @@
 {
-  "name": "example-electron-app",
+  "name": "example-electron-application",
   "version": "1.0.0",
   "description": "Example Electron Application",
   "productName": "Example Electron Application",
@@ -37,7 +37,7 @@
   "keywords": [],
   "author": {
     "name": "Wix.com",
-    "email": "example-electron-app@wix.com"
+    "email": "example-electron-application@wix.com"
   },
   "license": "MIT",
   "private": true
