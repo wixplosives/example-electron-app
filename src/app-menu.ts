@@ -3,7 +3,8 @@ import { app, dialog, Menu } from "electron/main";
 
 export const setApplicationMenu = () => {
   // based on: https://github.com/electron/electron/blob/main/lib/browser/default-menu.ts
-  const githubURL = "https://github.com/wixplosives/example-electron-application";
+  const repositoryUrl =
+    "https://github.com/wixplosives/example-electron-application";
   const isMac = process.platform === "darwin";
   const template: Electron.MenuItemConstructorOptions[] = [
     ...(isMac ? ([{ role: "appMenu" }] as const) : []),
@@ -17,7 +18,7 @@ export const setApplicationMenu = () => {
         {
           label: "GitHub",
           click: () => {
-            shell.openExternal(githubURL).catch(console.error);
+            shell.openExternal(repositoryUrl).catch(console.error);
           },
         },
         {
