@@ -1,6 +1,7 @@
 // @ts-check
 
 import { build, context } from "esbuild";
+import { tailwindPlugin } from "esbuild-plugin-tailwindcss";
 import fs from "node:fs/promises";
 
 const isWatch = process.argv.includes("--watch") || process.argv.includes("-w");
@@ -49,6 +50,7 @@ const browserEsmBundle = {
   ...commonBuildOptions,
   format: "esm",
   entryPoints: ["src/renderer.tsx"],
+  plugins: [tailwindPlugin()],
 };
 
 /** @type {import('esbuild').BuildOptions} */
@@ -67,9 +69,7 @@ await fs.cp(publicPath, outPath, { recursive: true });
 const bundles = [nodeEsmBundles, browserEsmBundle, browserCjsPreloadBundle];
 
 if (isWatch) {
-  const buildContexts = await Promise.all(
-    bundles.map((bundle) => context(bundle)),
-  );
+  const buildContexts = await Promise.all(bundles.map((bundle) => context(bundle)));
   await Promise.all(buildContexts.map((context) => context.watch()));
 } else {
   await Promise.all(bundles.map((bundle) => build(bundle)));

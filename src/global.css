@@ -1,22 +1,3 @@
-:root {
-  --primary-font-family: system-ui;
-  --primary-text-color: light-dark(rgb(51, 51, 51), rgb(204, 204, 204));
-  --primary-background-color: light-dark(rgb(240, 240, 240), rgb(24, 24, 24));
-}
-
-:root {
-  color-scheme: light dark;
-  color: var(--primary-text-color);
-  background-color: var(--primary-background-color);
-  font-family: var(--primary-font-family);
-}
-
-body {
-  margin: 0;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
