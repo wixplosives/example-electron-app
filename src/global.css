@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  @apply bg-gray-100 dark:bg-gray-800 transition-colors duration-200;
+}
