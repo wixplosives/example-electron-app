@@ -81,7 +81,7 @@ export const Sidebar = memo(function Sidebar({
                     transition-[width] duration-300 ease-in-out
                     ${isExpanded ? "w-64" : "w-16"}`}
     >
-      <div className="p-4 border-b border-gray-700 flex justify-between items-center">
+      <div className="px-5 py-4 border-b border-gray-700 flex justify-between items-center">
         <div
           className={`transition-opacity duration-150 ${
             isExpanded ? "opacity-100 visible w-full" : "opacity-0 invisible w-0 absolute"
@@ -118,8 +118,8 @@ export const Sidebar = memo(function Sidebar({
             onClick={() => setActiveTab(name)}
             onMouseEnter={() => !isExpanded && handleTooltipEnter(name)}
             onMouseLeave={clearTooltip}
-            className={`group relative w-full flex items-center p-4 hover:bg-gray-700 transition-colors duration-200
-                                ${activeTab === name ? "bg-gray-700" : ""}`}
+            className={`group relative w-full flex items-center px-5 py-4 hover:bg-gray-700 transition-colors duration-200
+                      ${activeTab === name ? "bg-gray-700" : ""}`}
           >
             <Icon className="h-6 w-6 min-w-[24px]" />
             <span
@@ -141,7 +141,7 @@ export const Sidebar = memo(function Sidebar({
               onClick={() => setActiveTab(name)}
               onMouseEnter={() => !isExpanded && handleTooltipEnter(name)}
               onMouseLeave={clearTooltip}
-              className={`group relative w-full flex items-center p-4 hover:bg-gray-700 transition-colors duration-200
+              className={`group relative w-full flex items-center px-5 py-4 hover:bg-gray-700 transition-colors duration-200
                          ${activeTab === name ? "bg-gray-700" : ""}`}
             >
               <Icon className="h-6 w-6 min-w-[24px]" />
