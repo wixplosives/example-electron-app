@@ -37,7 +37,7 @@ export function Dashboard() {
         menuItems={menuItems}
       />
       <main
-        className={`flex-1 p-10 overflow-auto transition-[margin-left] duration-300
+        className={`flex-1 p-6 overflow-auto transition-[margin-left] duration-300
         ${isExpanded ? "ml-64" : "ml-16"}`}
       >
         <div className="max-w-7xl">
