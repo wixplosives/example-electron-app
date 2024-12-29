@@ -5,3 +5,17 @@
 :root {
   @apply bg-gray-100 dark:bg-gray-800 transition-colors duration-200;
 }
+
+@layer components {
+  ::-webkit-scrollbar {
+    @apply w-3;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-600 rounded-full hover:bg-gray-500 dark:hover:bg-gray-500 transition-colors;
+  }
+}
