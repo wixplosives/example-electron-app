@@ -4,7 +4,7 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-8">
       <div className="pb-10">
-        <h1 className="text-5xl font-bold text-gray-800 dark:text-white mb-6">Welcome to Example App</h1>
+        <h1 className="text-5xl font-bold text-gray-800 dark:text-white mb-6">Example Electron Application</h1>
         <p className="text-2xl text-gray-600 dark:text-gray-300">
           A modern desktop application built with web technologies
         </p>
