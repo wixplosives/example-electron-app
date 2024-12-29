@@ -77,11 +77,11 @@ export const Sidebar = memo(function Sidebar({
 
   return (
     <div
-      className={`h-screen fixed flex flex-col bg-gray-800 dark:bg-gray-900 text-white
+      className={`h-screen fixed flex flex-col bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white
                     transition-[width] duration-300 ease-in-out
                     ${isExpanded ? "w-64" : "w-16"}`}
     >
-      <div className="px-5 py-4 border-b border-gray-700 flex justify-between items-center">
+      <div className="px-5 py-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
         <div
           className={`transition-opacity duration-150 ${
             isExpanded ? "opacity-100 visible w-full" : "opacity-0 invisible w-0 absolute"
@@ -92,7 +92,7 @@ export const Sidebar = memo(function Sidebar({
         {isExpanded ? (
           <button
             onClick={toggleSidebar}
-            className="group relative p-1 hover:bg-gray-700 rounded transition-opacity duration-150"
+            className="group relative p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-opacity duration-150"
             onMouseEnter={() => handleTooltipEnter("minimize")}
             onMouseLeave={clearTooltip}
           >
@@ -102,7 +102,7 @@ export const Sidebar = memo(function Sidebar({
         ) : (
           <button
             onClick={toggleSidebar}
-            className="group relative p-1 hover:bg-gray-700 rounded flex items-center justify-center"
+            className="group relative p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded flex items-center justify-center"
             onMouseEnter={() => handleTooltipEnter("expand")}
             onMouseLeave={clearTooltip}
           >
@@ -118,8 +118,8 @@ export const Sidebar = memo(function Sidebar({
             onClick={() => setActiveTab(name)}
             onMouseEnter={() => !isExpanded && handleTooltipEnter(name)}
             onMouseLeave={clearTooltip}
-            className={`group relative w-full flex items-center px-5 py-4 hover:bg-gray-700 transition-colors duration-200
-                      ${activeTab === name ? "bg-gray-700" : ""}`}
+            className={`group relative w-full flex items-center px-5 py-4 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200
+                      ${activeTab === name ? "bg-gray-200 dark:bg-gray-700" : ""}`}
           >
             <Icon className="h-6 w-6 min-w-[24px]" />
             <span
@@ -134,15 +134,15 @@ export const Sidebar = memo(function Sidebar({
         ))}
       </nav>
       {stickyItems.length > 0 && (
-        <div className="border-t border-gray-700">
+        <div className="border-t border-gray-200 dark:border-gray-700">
           {stickyItems.map(({ icon: Icon, name }) => (
             <button
               key={name}
               onClick={() => setActiveTab(name)}
               onMouseEnter={() => !isExpanded && handleTooltipEnter(name)}
               onMouseLeave={clearTooltip}
-              className={`group relative w-full flex items-center px-5 py-4 hover:bg-gray-700 transition-colors duration-200
-                         ${activeTab === name ? "bg-gray-700" : ""}`}
+              className={`group relative w-full flex items-center px-5 py-4 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200
+                         ${activeTab === name ? "bg-gray-200 dark:bg-gray-700" : ""}`}
             >
               <Icon className="h-6 w-6 min-w-[24px]" />
               <span
