@@ -40,14 +40,12 @@ export function Dashboard() {
         className={`flex-1 p-6 overflow-auto transition-[margin-left] duration-300
         ${isExpanded ? "ml-64" : "ml-16"}`}
       >
-        <div className="max-w-7xl">
-          {activeTab === "Home" && <Home />}
-          {activeTab !== "Home" && (
-            <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6">
-              <p className="text-gray-600 dark:text-gray-300">Content for {activeTab} panel goes here</p>
-            </div>
-          )}
-        </div>
+        {activeTab === "Home" && <Home />}
+        {activeTab !== "Home" && (
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6">
+            <p className="text-gray-600 dark:text-gray-300">Content for {activeTab} panel goes here</p>
+          </div>
+        )}
       </main>
     </div>
   );
