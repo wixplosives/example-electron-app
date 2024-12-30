@@ -1,5 +1,7 @@
 # Example Electron Application
 
+![Screenshot](/docs/screenshot.png)
+
 An example to showcase a typescript-based electron application.
 
 Uses native esm everywhere possible (`main` and `renderer`), as electron 28 now supports it. `preload` bundle is still commonjs to allow sandbox.
