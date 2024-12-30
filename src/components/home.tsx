@@ -1,11 +1,12 @@
-import { ChartBarIcon, ChatBubbleLeftRightIcon, Cog6ToothIcon, FolderIcon } from "@heroicons/react/24/outline";
-import { version as reactVersion } from "react/package.json";
-import { version as electronVersion } from "electron/package.json";
-import { version as typescriptVersion } from "typescript/package.json";
-import { version as tailwindVersion } from "tailwindcss/package.json";
 import { memo } from "react";
 
-export const Home: React.FC = () => {
+import { ChartBarIcon, ChatBubbleLeftRightIcon, Cog6ToothIcon, FolderIcon } from "@heroicons/react/24/outline";
+import { version as electronVersion } from "electron/package.json";
+import { version as reactVersion } from "react/package.json";
+import { version as tailwindVersion } from "tailwindcss/package.json";
+import { version as typescriptVersion } from "typescript/package.json";
+
+export const Home: React.FC = memo(function Home() {
   return (
     <div>
       <div className="pb-10">
@@ -66,7 +67,7 @@ export const Home: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 const TechCard: React.FC<{
   title: string;
