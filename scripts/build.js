@@ -34,7 +34,7 @@ const commonBuildOptions = {
     __REACT_DEVTOOLS_GLOBAL_HOOK__: `{ "isDisabled": true }`,
     "process.env.NODE_ENV": isWatch ? '"development"' : '"production"',
   },
-  external: ["electron/*"],
+  external: ["electron/common", "electron/renderer", "electron/main", "electron/utility"],
 };
 
 /** @type {import('esbuild').BuildOptions} */
